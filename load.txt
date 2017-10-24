@@ -1,0 +1,3 @@
+.import Dataset/words_alpha.txt temp
+INSERT INTO words(word) SELECT word FROM temp;
+drop table if exists temp;
