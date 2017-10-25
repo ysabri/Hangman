@@ -5,7 +5,10 @@ JVM = java
 CLASSES = \
 	src/Db/Rand.java \
 	src/Db/Db.java \
+	src/Network/KnockKnockProtocol.java \
 	src/Network/Listner.java \
+	src/Network/Listners.java \
+	src/Network/ClientListner.java \
 	src/Game/Game.java \
 	src/Hangman.java \
 
@@ -28,7 +31,7 @@ clean:
 		
 
 run: ./src/$(MAIN).java
-	@sudo $(JVM) -cp $(shell pwd) src.$(MAIN)
+	@sudo $(JVM) -cp $(shell pwd) src.$(MAIN) 2
 
 
 
