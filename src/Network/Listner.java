@@ -9,12 +9,11 @@ class Listner extends Thread {
 	private ServerSocket serverSocket;
 
 	public Listner() throws IOException {
-		init();
-	
+		serverSocket = new ServerSocket(0);
 	}
 
-	private void init() throws IOException {
-		serverSocket = new ServerSocket(0);
+	public Listner(int port) throws IOException {
+		serverSocket = new ServerSocket(port);
 	} 
 
 	public int getPort() {

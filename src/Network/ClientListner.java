@@ -13,24 +13,41 @@ class ClientListner extends Thread {
 	}
 
 	public void run() {
+		System.out.println("socket local addr: " + this.client.getLocalSocketAddress());
+		/*try{
+			URL url = new URL("http://" + this.client.getLocalSocketAddress());
+			
+			HttpURLConnection mainCon = (HttpURLConnection) url.openConnection();
+			mainCon.setRequestMethod("GET");
+		} catch(MalformedURLException e) {
+			System.out.println(" MalformedURLException happened in ClientListner: " + e);
+		} catch(IOException i) {
+			System.out.println("IOException happened in ClientListner");
+		} /*catch(ProtocolException p) {
+			System.out.println("ProtocolException happened in ClientListner");
+		}*/
+
 		try (
-            PrintWriter respone = new PrintWriter(client.getOutputStream(), true);
-            BufferedReader in = new BufferedReader(
+            DataOutputStream clientRes  = new DataOutputStream(client.getOutputStream());
+            BufferedReader clientReq = new BufferedReader(
                 new InputStreamReader(
                     client.getInputStream()));
         ) {
+        	//System.out.println("socket is listening on: " 
+			//	+ this.client.getLocalAddress() + 
+			//	"\n " + this.client.getLocalPort());
             String inputLine, outputLine;
-            KnockKnockProtocol kkp = new KnockKnockProtocol();
-            outputLine = kkp.processInput(null);
-            respone.println(outputLine);
+            //KnockKnockProtocol kkp = new KnockKnockProtocol();
+            //outputLine = kkp.processInput(null);
+            //respone.println(outputLine);
 
-            while ((inputLine = in.readLine()) != null) {
-            	System.out.println(inputLine);
-                outputLine = kkp.processInput(inputLine);
-                System.out.println("****" + outputLine);
-                respone.println(outputLine);
-                if (outputLine.equals("Bye"))
-                    break;
+            while ((inputLine = clientReq.readLine()) != null) {
+            	System.out.println("Recieved req:" + inputLine);
+                //outputLine = kkp.processInput(inputLine);
+                //System.out.println("****" + outputLine);
+                clientRes.writeBytes("console.log(yo)");
+                //if (outputLine.equals("Bye"))
+                //    break;
             }
             client.close();
             return;

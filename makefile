@@ -31,7 +31,7 @@ clean:
 		
 
 run: ./src/$(MAIN).java
-	@sudo $(JVM) -cp $(shell pwd) src.$(MAIN) 2
+	@sudo $(JVM) -cp $(shell pwd) src.$(MAIN) -r 8080
 
 
 

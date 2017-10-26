@@ -28,6 +28,15 @@ public class Listners {
 
 
 	}
+	// for some reason this allows listners to be created on restricted ports
+	// look into this more 
+	public void addPort(int port) throws IOException{
+
+		Listner temp = new Listner(port);
+		portNums.add(temp.getPort());
+		listners.add(temp);
+		listners.getLast().start();
+	}
 	
 
 	public LinkedList<Integer> getListnersPorts(){
