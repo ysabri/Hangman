@@ -1,0 +1,65 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#left-group {
+	position: relative;
+	width: 100%;
+	float: left;
+	display: inline-block;
+}
+
+#word {
+	position: absolute;
+	width: 1000px;
+	top: 30%;
+	left: 18%;
+	float: left;
+	display: inline-block;
+	height: 36.5px;
+}
+.label {
+	position: relative;
+	display: inline-block; 
+	height: 36.5px; 
+	width: 72px;
+}
+.wordbox {
+	position: relative;
+	display: inline-block; 
+	bottom: 0;
+	height: 36.5px; 
+	width: 30px;
+	margin-bottom: 0px;
+}
+
+.letter {
+	position: absolute;
+	left: -20%; 
+	margin-bottom: 6px; 
+	margin-left: 12px; 
+	width: inherit; 
+	height: inherit;
+}
+.line {
+	position: absolute; 
+	bottom: 0; 
+	border: none; 
+	background-color: black; 
+	color: black; 
+	width: inherit; 
+	height: 5px; 
+	float: left; 
+	margin-top: 0px; 
+	margin-bottom: 3px;  
+}
+/*#underline {
+	size: 60%;
+	color: black;
+	width: 60%;
+}
