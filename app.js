@@ -6,6 +6,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
+
+
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 
@@ -24,14 +27,16 @@ app.use(cookieParser());
 app.use(express.static('public'));
 app.use(session({
   secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true
+  resave: true,
+  saveUninitialized: true,
 }))
 app.use(session({
   genid: function(req) {
     return genuuid(); // use UUIDs for session IDs
   },
-  secret: 'keyboard cat'
+  secret: 'hang my man',
+  resave: true,
+  saveUninitialized: true
 }))
 //app.use(express.static(path.join(__dirname, 'public')));
 //console.log(path.join(__dirname, 'public/images/hangState/Hangman-0.png'));
