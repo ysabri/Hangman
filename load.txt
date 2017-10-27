@@ -1,3 +1,11 @@
 .import Dataset/words_alpha.txt temp
-INSERT INTO words(word) SELECT word FROM temp;
+INSERT INTO twords(word) SELECT word FROM temp;
 drop table if exists temp;
+create table temp (
+	word varchar(30) not null
+	);
+.import Dataset/nounlist.txt temp
+INSERT INTO noun(word) SELECT word FROM temp;
+INSERT INTO Words(id,word) SELECT * FROM twords WHERE word NOT IN(SELECT word FROM noun);
+drop table if exists temp;
+drop table if exists noun;

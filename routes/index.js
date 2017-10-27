@@ -11,7 +11,7 @@ var db = new sqlite3.Database(file);
 /*Query DB for word using the rand num*/
 function queryWord(callback) {
 
-	var num  = rand.integer(0,370100);
+	var num  = rand.integer(0,365713);
 
 	//let wordPromise = new Promise(function (fulfill, reject) {
 		db.serialize(function() {
@@ -22,8 +22,14 @@ function queryWord(callback) {
 					//	reject(err);
 					} else {
 					//	fulfill(row.word);
-					callback(row.word);
+					if(row!=undefined){
+						callback(row.word);
 					}
+					else{
+						callback(req.session.word);
+					}
+
+				}
 			});
 		});
 	//});
