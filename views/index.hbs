@@ -10,7 +10,7 @@
 <body>
 	<div class="main">
 		<div id="left-group">
-			<label style="margin-left: 8%; font-size: 150%">{{title}}</label>
+			<label style="margin-left: 9%; font-size: 150%; width: 130px">{{title}}</label>
 			<br>
 			<img id= "hang0" src="{{image}}" alt="hang0" width="220" height="220" style="float:left;">
 
@@ -24,21 +24,36 @@
 
 			<div class="word">
 				<div class="label" style="width: 88px;">
-					<h3 class="letter">Misses:</h3>
+					<h3 class="letter" style="left: -17%;">Misses:</h3>
 				</div>
 				{{{misses}}}
 			</div>
-			<br>
-			<br>
+
+			<div class=word>
+				<h3 class="label">Wins: </h4>
+				<h4 class="label" style="width: 45px;">{{wins}}</h4>
+				<h3 class="label" style="width: 62px;">Lost: </h4>
+				<h4 class="label" style="width: 45px;">{{loses}}</h4>
+			</div>
 			<div class="word">
-				<button class="btn btn-success">Guess</button>
-				<input class="form-control" placeholder="letter" style="display: inline-block; width: 63px;">
+				<form method="post" action="/">
+					<input type="submit" class="btn btn-success" value="Guess" onClick = " return checkEmpty()"></input>
+					<input id = "char" class="form-control" pattern="[A-Za-z]" maxlength="1" title="One charcter guess." placeholder="letter" name="guess" style="display: inline-block; width: 63px;">
+				
+					<a href="/reset" class="btn btn-danger">Reset</a>
+				</form>
 			</div>
 
 		</div>
 	</div>
 	<script>
-
+function checkEmpty() {
+    var x;
+    x = document.getElementById("char").value;
+    if (x == "") {
+        return false;
+    };
+}
 	</script>
 </body>
 </html>

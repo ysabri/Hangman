@@ -5,9 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-
-
-
+const uuidv5 = require('uuid/v5');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -18,40 +16,27 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static('public'));
-app.use(session({
-  secret: 'keyboard cat',
-  resave: true,
-  saveUninitialized: true,
-}))
+
 app.use(session({
   genid: function(req) {
-    return genuuid(); // use UUIDs for session IDs
+    return uuidv5('www.hangboi.com', uuidv5.URL); // use UUIDs for session IDs
   },
-  secret: 'hang my man',
-  resave: true,
+  secret: 'gttakpemguessinboutmi',
+  resave: false,
   saveUninitialized: true
 }))
-//app.use(express.static(path.join(__dirname, 'public')));
-//console.log(path.join(__dirname, 'public/images/hangState/Hangman-0.png'));
-//app.use(express.static(path.join(__dirname, '/public/images/hangState/Hangman-0.png')));
 
 app.use('/', index);
-app.use('/users', users);
 
 app.listen(8080, function() {
 	console.log('listining on port 8080' );
 });
 
-//app.get('/', function(req, res){
-	//res.send(index);
-//});
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
