@@ -2,20 +2,22 @@
   "name": "expressapp",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": "6.11.4"
+  },
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "NODE_ENV=production node ./bin/www",
+    "debug": "node app.js"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
-    "client-sessions": "^0.8.0",
+    "compression": "^1.7.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.15.5",
     "express-session": "^1.15.6",
-    "gen-uuid": "0.0.1",
     "hbs": "~4.0.1",
     "morgan": "~1.9.0",
-    "promise": "^8.0.1",
     "random-js": "^1.0.8",
     "regex": "^0.1.1",
     "serve-favicon": "~2.4.5",

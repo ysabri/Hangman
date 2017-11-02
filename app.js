@@ -1,3 +1,4 @@
+var compression = require('compression')
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -7,10 +8,17 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 const uuidv5 = require('uuid/v5');
 
+debug = true;
+if (process.env.NODE_ENV == 'production')
+  debug = false;
+
+var app = express();
+app.use(compression());
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 
-var app = express();
+app.use(favicon(path.join(__dirname, '/public/images/favicon.ico')));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -18,7 +26,9 @@ app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 app.use(express.static('public'));
 
@@ -34,7 +44,7 @@ app.use(session({
 app.use('/', index);
 
 app.listen(8080, function() {
-	console.log('listining on port 8080' );
+    debug && console.log('listining on port 8080');
 });
 
 // catch 404 and forward to error handler
