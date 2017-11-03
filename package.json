@@ -15,7 +15,6 @@
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "^4.15.5",
-    "express-minify-html": "^0.11.5",
     "express-session": "^1.15.6",
     "hbs": "~4.0.1",
     "helmet": "^3.9.0",
@@ -27,7 +26,6 @@
     "uuid": "^3.1.0"
   },
   "devDependencies": {
-    "html-dist": "^0.2.0",
     "reload": "^2.2.2"
   }
 }
