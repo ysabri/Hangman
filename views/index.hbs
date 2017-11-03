@@ -36,6 +36,8 @@
           <input type="submit" class="btn btn-success" value="Guess" onClick="return checkEmpty()">
           <input id="char" class="form-control" pattern="[A-Za-z]" maxlength="1" title="One charcter guess." placeholder="letter" name="guess" style="display: inline-block; width: 63px;">
           <a href="/reset" class="btn btn-danger">Reset</a>
+		  {{{gameStatus}}}
+          {{{notGuessed}}}
         </form>
       </div>
     </div>
