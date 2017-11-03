@@ -7,31 +7,37 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 const uuidv5 = require('uuid/v5');
-
-debug = true;
-if (process.env.NODE_ENV == 'production')
-  debug = false;
+var helmet = require('helmet');
 
 var app = express();
+//use helmet for some security params, only the defaults
+//based on v3.9 and compression for performance
+app.use(helmet());
 app.use(compression());
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+//var users = require('./routes/users');
 
+//set the app icon
 app.use(favicon(path.join(__dirname, '/public/images/favicon.ico')));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
+//setup dev logger
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
 app.use(cookieParser());
+//setup content namespace
 app.use(express.static('public'));
-
+//setup sessions, using the url namespace to get the uuids
+//even though they are not used till now, there is use if
+//several machinces are running the app and they talk through
+//a shared database.
 app.use(session({
   genid: function(req) {
     return uuidv5('www.hangboi.com', uuidv5.URL); // use UUIDs for session IDs
@@ -44,7 +50,7 @@ app.use(session({
 app.use('/', index);
 
 app.listen(8080, function() {
-    debug && console.log('listining on port 8080');
+  console.log('listining on port 8080');
 });
 
 // catch 404 and forward to error handler
