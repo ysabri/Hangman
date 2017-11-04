@@ -112,9 +112,11 @@ function createHtml(word, guessed, misses, status, oldWord, callback) {
 		worl;
 	//player won
 	if (status == 1) {
-		wid = '330px';
-		worl = 'Congrats! The word was: ' + oldWord.charAt(0).toUpperCase() + oldWord.slice(1);
-		gameStat = '<h5 class="label" style="width:' + wid + ';">' + worl + '</h5>';
+		wid = '270px';
+		worl = 'Congrats! The word was: ';
+		displayWord = '<h4 class="label" style="width: 45px;">' +
+			oldWord.charAt(0).toUpperCase() + oldWord.slice(1);
+		gameStat = '<h4 class="label" style="width:' + wid + ';">' + worl + '</h4>';
 	} //player lost
 	else if (status == -1) {
 		wid = '160px';
@@ -123,7 +125,6 @@ function createHtml(word, guessed, misses, status, oldWord, callback) {
 			oldWord.charAt(0).toUpperCase() + oldWord.slice(1) + '</h4>';
 		gameStat = '<h4 class="label" style="width:' + wid + ';">' + worl + '</h4>';
 	}
-	//if (worl)
 
 	callback(result, misresult, gameStat, displayWord);
 }
