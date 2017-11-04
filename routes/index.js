@@ -34,28 +34,28 @@ function queryWord(oldword, callback) {
 
 	//let wordPromise = new Promise(function (fulfill, reject) {
 	/*query db for a word given a random id */
-	db.serialize(function() {
-		db.get("SELECT word as word FROM Words WHERE id=" + num,
-			function(err, row) {
-				if (err) {
-					dbg && console.log(err);
-					//	reject(err);
-				} else {
-					//	fulfill(row.word);
-					try {
-						if (row != undefined) {
-							callback(row.word);
-						} else {
-							callback(oldWord);
-						}
-					} catch (e) {
-						console.log('in case happened');
-						i = rand.integer(0, 19);
-						callback(inCase[i]);
+	//db.serialize(function() {
+	db.get("SELECT word as word FROM Words WHERE id=" + num,
+		function(err, row) {
+			if (err) {
+				dbg && console.log(err);
+				//	reject(err);
+			} else {
+				//	fulfill(row.word);
+				try {
+					if (row != undefined) {
+						callback(row.word);
+					} else {
+						callback(oldWord);
 					}
+				} catch (e) {
+					console.log('in case happened');
+					i = rand.integer(0, 19);
+					callback(inCase[i]);
 				}
-			});
-	});
+			}
+		});
+	//});
 	//});
 
 	//wordPromise.then(function(word) {
@@ -113,16 +113,17 @@ function createHtml(word, guessed, misses, status, oldWord, callback) {
 	//player won
 	if (status == 1) {
 		wid = '330px';
-		worl = 'Congratulations you won!';
+		worl = 'Congrats! The word was: ' + oldWord.charAt(0).toUpperCase() + oldWord.slice(1);
+		gameStat = '<h5 class="label" style="width:' + wid + ';">' + worl + '</h5>';
 	} //player lost
 	else if (status == -1) {
 		wid = '160px';
 		worl = 'The word was: ';
 		displayWord = '<h4 class="label" style="width: 45px;">' +
 			oldWord.charAt(0).toUpperCase() + oldWord.slice(1) + '</h4>';
-	}
-	if (worl)
 		gameStat = '<h4 class="label" style="width:' + wid + ';">' + worl + '</h4>';
+	}
+	//if (worl)
 
 	callback(result, misresult, gameStat, displayWord);
 }
@@ -254,6 +255,7 @@ function guessChecker(body, req, callback) {
 			guess = true;
 			req.session.wins++;
 			req.session.gameStatus = 1;
+			req.session.oldWord = req.session.word;
 			req.session.guesses = 0;
 			req.session.guessed = [''];
 			req.session.misses = [''];
