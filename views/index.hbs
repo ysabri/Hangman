@@ -6,10 +6,10 @@
   <link rel="stylesheet" type="text/css" herf="/public/stylesheets/style.css">
   <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 </head>
-<body>
+<body style="margin: 0px; padding: 0px; padding-top: 5px">
   <div class="main">
     <div id="left-group">
-      <label style="margin-left: 9%; font-size: 150%; width: 130px">{{title}}</label>
+      <label style="margin-left: 40%; font-size: 150%; width: 130px">{{title}}</label>
       <br>
       <img id="hang0" src="{{image}}" alt="hang0" width="220" height="220" style="float:left;">
       <br>
@@ -36,12 +36,15 @@
           <input type="submit" class="btn btn-success" value="Guess" onClick="return checkEmpty()">
           <input id="char" class="form-control" pattern="[A-Za-z]" maxlength="1" title="One charcter guess." placeholder="letter" name="guess" style="display: inline-block; width: 63px;">
           <a href="/reset" class="btn btn-danger">Reset</a>
-		  {{{gameStatus}}}
+		      {{{gameStatus}}}
           {{{notGuessed}}}
         </form>
       </div>
     </div>
 	</div>
+  <div width="">
+    <embed src="/Yazeed-Resume.pdf" height="700px" width="50%"></embed>
+  </div>
   <script>
   window.onload = function () {
   	document.getElementById("char").focus();

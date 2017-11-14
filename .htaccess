@@ -1,0 +1,4 @@
+PassengerEnabled on
+PassengerAppRoot /home/httpysab/hangman
+SetEnv NODE_ENV production
+SetEnv NODE_PATH /home/httpysab/hangman/node_modules
