@@ -294,7 +294,7 @@ router.post('/', function(req, res, next) {
 	}
 
 	//check for invalid guess values
-	if (regex.test(req.body.guess) || req.body.guess.length != 1) {
+	if (req.body.guess === undefined || regex.test(req.body.guess) || req.body.guess.length != 1) {
 		dbg && console.log("&&&&&&&&&&");
 		res.sendStatus(400);
 	}

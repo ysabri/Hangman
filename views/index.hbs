@@ -1,58 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<title><{{tile}}</title>
-<head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" herf="/public/stylesheets/style.css">
-  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-</head>
-<body>
-  <div class="main">
-    <div id="left-group">
-      <label style="margin-left: 9%; font-size: 150%; width: 130px">{{title}}</label>
-      <br>
-      <img id="hang0" src="{{image}}" alt="hang0" width="220" height="220" style="float:left;">
-      <br>
-      <div class="word">
-        <div class="label">
-          <h3 class="letter">Word:</h3>
-        </div>
-        {{{word}}}
+<div class="main">
+  <div id="left-group">
+    <label style="margin-left: 9%; font-size: 150%; width: 130px">{{title}}</label>
+    <br>
+    <img id="hang0" src="{{image}}" alt="hang0" width="220" height="220" style="float:left;">
+    <br>
+    <div class="word">
+      <div class="label">
+        <h3 class="letter">Word:</h3>
       </div>
-      <div class="word">
-        <div class="label" style="width: 88px;">
-          <h3 class="letter" style="left: -17%;">Misses:</h3>
-        </div>
-        {{{misses}}}
-      </div>
-      <div class="word">
-        <h3 class="label">Wins: </h3>
-        <h4 class="label" style="width: 45px;">{{wins}}</h4>
-        <h3 class="label" style="width: 62px;">Lost: </h3>
-        <h4 class="label" style="width: 45px;">{{loses}}</h4>
-      </div>
-      <div class="word">
-        <form method="post" action="/">
-          <input type="submit" class="btn btn-success" value="Guess" onClick="return checkEmpty()">
-          <input id="char" class="form-control" pattern="[A-Za-z]" maxlength="1" title="One charcter guess." placeholder="letter" name="guess" style="display: inline-block; width: 63px;">
-          <a href="/reset" class="btn btn-danger">Reset</a>
-		  {{{gameStatus}}}
-          {{{notGuessed}}}
-        </form>
-      </div>
+      {{{word}}}
     </div>
-	</div>
-  <script>
+    <div class="word">
+      <div class="label" style="width: 88px;">
+        <h3 class="letter" style="left: -17%;">Misses:</h3>
+      </div>
+      {{{misses}}}
+    </div>
+    <div class="word">
+      <h3 class="label">Wins: </h3>
+      <h4 class="label" style="width: 45px;">{{wins}}</h4>
+      <h3 class="label" style="width: 62px;">Lost: </h3>
+      <h4 class="label" style="width: 45px;">{{loses}}</h4>
+    </div>
+    <div class="word">
+      <form method="post" action="/">
+        <input type="submit" class="btn btn-success" value="Guess" onClick="return checkEmpty()">
+        <input id="char" class="form-control" pattern="[A-Za-z]" maxlength="1" title="One charcter guess." placeholder="letter" name="guess" style="display: inline-block; width: 63px;">
+        <a href="/reset" class="btn btn-danger">Reset</a>
+	      {{{gameStatus}}}
+        {{{notGuessed}}}
+      </form>
+    </div>
+    {{{misses}}}
+  </div>
+</div>
+<script>
   window.onload = function () {
-  	document.getElementById("char").focus();
+	  document.getElementById("char").focus();
   }
   function checkEmpty() {
-  	var x;
-  	x = document.getElementById("char").value;
-  	if (x == "") {
-  		return false;
-  	};
+	  var x;
+	  x = document.getElementById("char").value;
+	  if (x == "") {
+		  return false;
+	  };
   }
-  </script>
-</body>
-</html>
+</script>
+
